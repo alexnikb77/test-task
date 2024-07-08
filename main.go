@@ -9,8 +9,9 @@ import (
 )
 
 var a []string
-var k, x, y, p int
+var k, p int
 var z float64
+var x, y string
 
 func delSpaces(str string) string {
 	result := make([]rune, 0, len(str))
@@ -48,7 +49,6 @@ func findOper(st string) int {
 				i++
 				k = 4
 			}
-		default:
 
 		}
 	}
@@ -56,28 +56,94 @@ func findOper(st string) int {
 	return i
 }
 
-func mathcalc(one, two int) float64 {
+func mathcalc(one, two string) float64 {
 
 	var res, one1, two1 float64
-	one1 = float64(one)
-	two1 = float64(two)
-	if one < 1 || two < 1 {
-		fmt.Println("пример не соответствует шаблону")
-		os.Exit(2)
+	var f, x, y int
+	switch one {
+	case "I":
+		one1 = 1
+	case "II":
+		one1 = 2
+	case "III":
+		one1 = 3
+	case "IV":
+		one1 = 4
+	case "V":
+		one1 = 5
+	case "VI":
+		one1 = 6
+	case "VII":
+		one1 = 7
+	case "VIII":
+		one1 = 8
+	case "IX":
+		one1 = 9
+	default:
+		f = 1
 	}
-	if one > 10 || two > 10 {
-		fmt.Println("пример не соответствует шаблону")
-		os.Exit(2)
+	switch two {
+	case "I":
+		two1 = 1
+	case "II":
+		two1 = 2
+	case "III":
+		two1 = 3
+	case "IV":
+		two1 = 4
+	case "V":
+		two1 = 5
+	case "VI":
+		two1 = 6
+	case "VII":
+		two1 = 7
+	case "VIII":
+		two1 = 8
+	case "IX":
+		two1 = 9
+	default:
+		f = 1
 	}
-	switch k {
-	case 1:
-		res = float64(one1 + two1)
-	case 2:
-		res = float64(one1 - two1)
-	case 3:
-		res = float64(one1 * two1)
-	case 4:
-		res = float64(one1 / two1)
+
+	if f == 0 {
+		switch k {
+		case 1:
+			res = float64(one1 + two1)
+		case 2:
+			res = float64(one1 - two1)
+		case 3:
+			res = float64(one1 * two1)
+		case 4:
+			res = float64(one1 / two1)
+		}
+		if res < 0 {
+			fmt.Println("По тз пример с римскими цифрами не может быть отридцательным ")
+			os.Exit(3)
+		}
+	} else {
+		x, _ = strconv.Atoi(one)
+		y, _ = strconv.Atoi(two)
+		one1 = float64(x)
+		two1 = float64(y)
+
+		if one1 < 1 || two1 < 1 {
+			fmt.Println("пример не соответствует шаблону")
+			os.Exit(2)
+		}
+		if one1 > 10 || two1 > 10 {
+			fmt.Println("пример не соответствует шаблону")
+			os.Exit(2)
+		}
+		switch k {
+		case 1:
+			res = float64(one1 + two1)
+		case 2:
+			res = float64(one1 - two1)
+		case 3:
+			res = float64(one1 * two1)
+		case 4:
+			res = float64(one1 / two1)
+		}
 	}
 	return res
 }
@@ -107,13 +173,8 @@ func main() {
 			a = strings.Split(text, "/")
 
 		}
-		x, _ = strconv.Atoi(a[0])
-		y, _ = strconv.Atoi(a[1])
 
-		z = mathcalc(x, y)
-		//fmt.Println(y)
-		//fmt.Println(x)
-
+		z = mathcalc(a[0], a[1])
 		fmt.Println(z)
 
 	}
