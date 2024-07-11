@@ -117,8 +117,9 @@ func mathcalc(one, two string) float64 {
 			res = float64(one1 / two1)
 		}
 		if res < 0 {
-			fmt.Println("По тз пример с римскими цифрами не может быть отридцательным ")
-			os.Exit(3)
+			//fmt.Println("По тз пример с римскими цифрами не может быть отридцательным ")
+			//os.Exit(3)
+			panic("По тз пример с римскими цифрами не может быть отридцательным")
 		}
 	} else {
 		x, _ = strconv.Atoi(one)
@@ -127,12 +128,14 @@ func mathcalc(one, two string) float64 {
 		two1 = float64(y)
 
 		if one1 < 1 || two1 < 1 {
-			fmt.Println("пример не соответствует шаблону")
-			os.Exit(2)
+			//fmt.Println("пример не соответствует шаблону")
+			//os.Exit(2)
+			panic("пример не соответствует шаблону")
 		}
 		if one1 > 10 || two1 > 10 {
-			fmt.Println("пример не соответствует шаблону")
-			os.Exit(2)
+			//fmt.Println("пример не соответствует шаблону")
+			//os.Exit(2)
+			panic("пример не соответствует шаблону")
 		}
 		switch k {
 		case 1:
@@ -158,8 +161,9 @@ func main() {
 		text = delSpaces(text)
 		p = findOper(text)
 		if p != 1 {
-			fmt.Println("пример не соответствует шаблону")
-			os.Exit(1)
+			//fmt.Println("пример не соответствует шаблону")
+			//os.Exit(1)
+			panic("пример не соответствует шаблону")
 		}
 
 		switch k {
